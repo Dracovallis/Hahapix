@@ -1,0 +1,35 @@
+<div *ngIf="!user[0]">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="user[0]">
+  <article class="row">
+    <div class="col-md-2 col-sm-2 hidden-xs">
+      <figure class="thumbnail">
+        <div *ngIf="user[0]">
+          <a href="users/{{comment.author}}">
+            <img class="img-responsive" src="{{user[0].avatar}}" onerror="this.onerror=null;this.src='https://img00.deviantart.net/93f6/i/2010/155/1/1/facebook_default_picture_by_adnac.jpg';"
+            />
+          </a>
+        </div>
+      </figure>
+    </div>
+    <div class="col-md-10 col-sm-10">
+      <div class="panel panel-default arrow left">
+        <div class="panel-body">
+          <header class="text-left">
+            <div class="comment-user">
+              <i class="fa fa-user"></i> {{comment.author}}</div>
+            <time class="comment-date">
+              <i class="fa fa-clock-o"></i> {{comment._kmd.lmt | date: 'dd/MM/yyyy - HH:mm'}}</time>
+          </header>
+          <div class="comment-post">
+            <p>
+              {{comment.content}}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </article>
+</div>

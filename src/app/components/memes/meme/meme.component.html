@@ -1,0 +1,37 @@
+<div class="card" style="width: 40rem;">
+  <div class="card-block">
+    <a href="meme/{{meme._id}}">
+      <h4 class="card-title">{{meme.title}}</h4>
+    </a>
+    <img style="width: 100%" class="card-img-top" src="{{meme.imageUrl}}" alt="Card image cap">
+    <div>
+      <div style="float:left; margin-left: 10px">
+        <h4 class="glyphicon glyphicon-user"> </h4>
+        <a href="users/{{meme.author}}">{{meme.author}}</a>
+        |
+        <h4 class="glyphicon glyphicon-star"> </h4>
+        <b>{{meme.rating }}</b>
+      </div>
+
+      <div style="float: right; margin-right: 10px">
+        <h4 class="glyphicon glyphicon-calendar"> </h4>
+        <i>{{meme._kmd.lmt | date: "dd/MM/yy HH:mm" }}</i>
+      </div>
+      <div>
+        <a id="comment-btn" href="meme/{{meme._id}}">
+          <h4 align="center" class="glyphicon glyphicon-comment"></h4>
+        </a>
+      </div>
+
+
+    </div>
+    <div>
+
+
+      <a *ngIf="meme.author == currentUser" (click)="deleteCommet(meme._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove"></a>
+      <a href="meme/edit/{{meme._id}}" *ngIf="meme.author == currentUser" id="creator" class="btn btn-danger glyphicon glyphicon-pencil"></a>
+    </div>
+
+  </div>
+  <hr>
+</div>

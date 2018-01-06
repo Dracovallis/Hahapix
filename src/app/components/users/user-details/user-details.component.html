@@ -1,0 +1,71 @@
+<div *ngIf="!userInfo[0]">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="userInfo[0]">
+  <div class="container">
+    <div align="center" class="row">
+      <div class="col-xs-12 col-sm-6 col-md-10">
+        <div class="well well-sm">
+          <div class="row">
+            <div *ngIf="userInfo[0]">
+              <div class="col-sm-6 col-md-4">
+                <a target="_blank" href="{{userInfo[0].avatar}}">
+                  <img src="{{userInfo[0].avatar}}" alt="avatar" class="img-rounded img-responsive" onerror="this.onerror=null;this.src='https://img00.deviantart.net/93f6/i/2010/155/1/1/facebook_default_picture_by_adnac.jpg';"
+                  />
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-8">
+                <h4>
+                  {{userInfo[0].firstName || '' }}{{' '}}{{ userInfo[0].lastName || ''}}
+                </h4>
+                <h4>
+                  <h6>Username: {{userInfo[0].username}}</h6>
+                </h4>
+                <small>
+                  <cite>{{userInfo[0].address || ''}}
+                    <i class="glyphicon glyphicon-map-marker">
+                    </i>
+                  </cite>
+                </small>
+                <p>
+                  <i class="glyphicon glyphicon-envelope"></i>{{userInfo[0].email}}
+                  <br />
+                  <div>
+                    <div *ngIf="userInfo[0].facebook">
+                      <a target="_blank" type="button" href="{{userInfo[0].facebook}}" class="btn btn-primary fa fa-facebook-f">Facebook
+                      </a>
+                    </div>
+                    <div *ngIf="!userInfo[0].facebook">
+                      <a type="button" class="btn btn-primary disabled">
+                        Facebook
+                      </a>
+                    </div>
+                    <div *ngIf="userInfo[0].twitter">
+                      <a target="_blank" type="button" href="{{userInfo[0].twitter}}" class="btn btn-primary">
+                        Twitter
+                      </a>
+                    </div>
+                    <div *ngIf="!userInfo[0].twitter">
+                      <a type="button" class="btn btn-primary disabled">
+                        Twitter
+                      </a>
+                    </div>
+                  </div>
+                  <br/>
+                  <!-- Split button -->
+                  <div *ngIf="userInfo[0].username === currentUser" class="btn-group">
+                    <a type="button" href="users/edit/{{userInfo[0].username}}" class="btn btn-primary">
+                      Edit
+                    </a>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3 align="center">Posts by {{userInfo[0].username}}</h3>
+    <app-liked-memes></app-liked-memes>
+  </div>
+</div>

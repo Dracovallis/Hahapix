@@ -1,0 +1,18 @@
+<div *ngIf="memes.length == -1">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div align="center" *ngIf="!memes[0] && memes.length == 0">
+  * No Posts *
+</div>
+
+<div *ngIf="memes">
+  <div align="center">
+    <ul>
+      <div *ngIf="memes.length > 0">
+        <li *ngFor="let meme of memes">
+          <app-meme [meme]='meme'></app-meme>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>

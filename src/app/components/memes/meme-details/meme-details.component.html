@@ -1,0 +1,38 @@
+<div *ngIf="!meme.title">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="meme.title" align="center">
+  <div class="card" style="width: 40rem;">
+    <div class="card-block">
+      <h4 class="card-title">{{meme.title}}</h4>
+      <img style="width: 100%" class="card-img-top" src="{{meme.imageUrl}}" alt="Card image cap">
+      <div>
+        <div style="float:left; margin-left: 10px">
+          <h4 class="glyphicon glyphicon-user"> </h4>
+          <a href="users/{{meme.author}}">{{meme.author}}</a>
+          |
+          <h4 class="glyphicon glyphicon-star"> </h4>
+          <b>{{meme.rating }}</b>
+          |
+          <h4 class="glyphicon glyphicon-calendar"> </h4>
+          <i>{{meme._kmd.lmt | date: "dd/MM/yy HH:mm" }}</i>
+        </div>
+        <div style="float: right; margin-right: 10px">
+          <span *ngIf="meme['thumbsUp'].indexOf(this.username) === -1">
+            <button (click)="like()" class="btn btn-dark glyphicon glyphicon-arrow-up">{{meme.thumbsUp.length}}</button>
+          </span>
+          <span *ngIf="meme['thumbsUp'].indexOf(this.username) > -1">
+            <button (click)="like()" class="btn btn-dark glyphicon glyphicon-arrow-up disabled">{{meme.thumbsUp.length}}</button>
+          </span>
+          <span *ngIf="meme['thumgsDown'].indexOf(this.username) === -1">
+            <button (click)="dislike()" class="btn btn-dark glyphicon glyphicon-arrow-down">{{meme.thumgsDown.length}}</button>
+          </span>
+          <span *ngIf="meme['thumgsDown'].indexOf(this.username) > -1">
+            <button (click)="dislike()" class="btn btn-dark glyphicon glyphicon-arrow-down disabled">{{meme.thumgsDown.length}}</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-comment-section></app-comment-section>
+</div>

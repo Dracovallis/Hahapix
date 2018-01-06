@@ -1,0 +1,8 @@
+<div class="panel panel-info">
+  <div class="panel-body">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit(postForm.value)" class="form-inline">
+      <textarea formControlName="content" class="pb-cmnt-textarea"></textarea>
+      <button class="btn btn-primary pull-right" type="submit">Share</button>
+    </form>
+  </div>
+</div>

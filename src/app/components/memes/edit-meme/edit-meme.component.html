@@ -1,0 +1,32 @@
+<div *ngIf="!meme.title">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="meme">
+  <div class="container">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input formControlName="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter title">
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input formControlName="imageUrl" type="text" class="form-control" id="imageUrl" placeholder="Image URL">
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+
+        <select formControlName="category" type="category" class="form-control" id="category" placeholder="Category">
+          <option value="animals">Animals</option>
+          <option value="dark humor">Dark Humor</option>
+        </select>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input formControlName="nsfw" type="checkbox" class="form-check-input"> NSFW
+        </label>
+      </div>
+      <pre>{{createForm.value | json}}</pre>
+      <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+  </div>
+</div>

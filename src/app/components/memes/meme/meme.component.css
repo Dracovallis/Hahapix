@@ -1,0 +1,12 @@
+#comment-btn {
+    width: 40%;
+}
+
+#creator {
+    width: 20%
+}
+
+#comment-btn {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
