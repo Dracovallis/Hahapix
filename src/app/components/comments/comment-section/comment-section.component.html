@@ -2,15 +2,15 @@
   <app-loading-spinner></app-loading-spinner>
 </div>
 
-<div class="container">
-  <div class="row" >
-    <div class="col-md-8">
+<div  align="center" class="container">
+  <div align="center"  class="row" >
+    <div id="comment-section" class="col-md-8 col-sm-8">
       <h2 class="page-header">Comments</h2>
       <app-post-comment (submittedComment)="handleCommentSubmit($event)"></app-post-comment>
       <section class="comment-list">
         <div *ngIf="comments.length > 0">
           <li *ngFor="let comment of comments">
-            <app-comment [comment]='comment'></app-comment>
+            <app-comment   [comment]='comment'></app-comment>
           </li>
         </div>
         <div *ngIf="comments.length == 0">

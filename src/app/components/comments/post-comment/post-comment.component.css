@@ -6,7 +6,8 @@
 .pb-cmnt-textarea {
     resize: none;
     padding: 20px;
-    height: 130px;
+    height: 70px;
     width: 100%;
     border: 1px solid #F2F2F2;
+    margin-bottom: 10px;
 }

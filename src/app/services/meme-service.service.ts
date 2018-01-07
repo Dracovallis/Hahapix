@@ -73,7 +73,7 @@ export class MemeServiceService {
     )
   }
 
-  edit(meme,id): Observable<Object> {
+  edit(meme, id): Observable<Object> {
     return this.http.put(
       memeBaseUrl + id,
       JSON.stringify(meme),
@@ -83,7 +83,7 @@ export class MemeServiceService {
     )
   }
 
-  getFreshMemes(): Observable<Object> {     
+  getFreshMemes(): Observable<Object> {
     return this.http.get(
       memeBaseUrl + `?query={}&sort={"_kmd.ect": -1}`,
       {
@@ -93,7 +93,7 @@ export class MemeServiceService {
     )
   }
 
-  getHotMemes(): Observable<Object> {     
+  getHotMemes(): Observable<Object> {
     return this.http.get(
       memeQueryUrl + `?query={}&sort={"rating": -1}`,
       {
@@ -113,8 +113,18 @@ export class MemeServiceService {
     )
   }
 
+  getSearchedMemes(): Observable<Object> {
+    return this.http.get(
+      memeQueryUrl,
+      {
+        headers: this.createAuthHeaders('Kinvey')
+      }
+
+    )
+  }
+
   getMemesByUser(username): Observable<Object> {
-    
+
     return this.http.get(
       memeQueryUrl + `?query={"author":"${username}"}`,
       {
@@ -124,7 +134,7 @@ export class MemeServiceService {
     )
   }
 
-  
+
 
   private createAuthHeaders(type: string): HttpHeaders {
     if (type === 'Basic') {

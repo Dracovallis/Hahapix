@@ -1,4 +1,11 @@
 .img {
-    width:100 px;
-    height: 100px;
+    width:150px;
+    height: 150px;
+}
+
+#save-btn {
+    background-color: black;
+}
+#save-btn:hover {
+    background-color: rgba(0, 0, 0, 0.781);
 }

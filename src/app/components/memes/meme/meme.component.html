@@ -3,7 +3,8 @@
     <a href="meme/{{meme._id}}">
       <h4 class="card-title">{{meme.title}}</h4>
     </a>
-    <img style="width: 100%" class="card-img-top" src="{{meme.imageUrl}}" alt="Card image cap">
+    <img *ngIf="!meme.nsfw" style="width: 100%" class="card-img-top" src="{{meme.imageUrl}}" alt="MEME">
+    <img *ngIf="meme.nsfw" (click)="meme.nsfw = false" style="width: 100%" class="card-img-top nsfw" src="../../../../assets/images/NSFW.jpg" alt="NSFW">
     <div>
       <div style="float:left; margin-left: 10px">
         <h4 class="glyphicon glyphicon-user"> </h4>

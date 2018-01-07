@@ -27,6 +27,8 @@ import { LoadingSpinnerComponent } from './components/common/loading-spinner/loa
 import { HeaderComponent } from './components/common/header/header.component';
 import { LikedMemesComponent } from './components/memes/liked-memes/liked-memes.component';
 import { EditMemeComponent } from './components/memes/edit-meme/edit-meme.component';
+import { SearchbarComponent } from './components/common/searchbar/searchbar.component';
+import { StorageServiceService } from './services/storage-service.service';
 
 
 
@@ -47,7 +49,8 @@ import { EditMemeComponent } from './components/memes/edit-meme/edit-meme.compon
     LoadingSpinnerComponent,
     HeaderComponent,
     LikedMemesComponent,
-    EditMemeComponent
+    EditMemeComponent,
+    SearchbarComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { EditMemeComponent } from './components/memes/edit-meme/edit-meme.compon
     AuthGuard,
     MemeServiceService,
     CommentService,
-    UserService
+    UserService,
+    StorageServiceService
   ],
   bootstrap: [AppComponent]
 })

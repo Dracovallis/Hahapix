@@ -3,6 +3,8 @@
 <button (click)="getHotMemes($event)" type="button" class="btn btn-dark">Hot</button>
 <button (click)="getMemesByCategory($event,'animals')" type="button" class="btn btn-dark">Animals</button>
 <button (click)="getMemesByCategory($event,'dark humor')" type="button" class="btn btn-dark">Dark Humor</button>
+<button (click)="getMemesByCategory($event,'programming')" type="button" class="btn btn-dark">Programming</button>
+<button (click)="getMemesByCategory($event,'anime')" type="button" class="btn btn-dark">Anime/Manga</button>
 <div *ngIf="!memes[0] && memes.length !== 0">
   <app-loading-spinner></app-loading-spinner>
 </div>

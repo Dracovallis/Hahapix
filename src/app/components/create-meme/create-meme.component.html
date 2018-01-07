@@ -14,6 +14,9 @@
     <select formControlName="category" type="category" class="form-control" id="category" placeholder="Category">
       <option value="animals">Animals</option>
       <option value="dark humor">Dark Humor</option>
+      <option value="programming">Programming</option>
+      <option value="anime">Anime and Manga</option>
+      
     </select> 
   </div>
   <div class="form-check">
@@ -23,6 +26,6 @@
     </label>
   </div>
   <pre>{{createForm.value | json}}</pre>
-  <button type="submit" class="btn btn-primary">Create</button>
+  <button type="submit" id="save-btn" class="btn btn-primary">Create</button>
 </form>
 </div>

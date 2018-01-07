@@ -1,0 +1,6 @@
+<form class="navbar-form navbar-left" [formGroup]="searchForm" (ngSubmit)="searchMemes(searchForm.value)">
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="search" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-dark glyphicon glyphicon-search"></button>
+</form>

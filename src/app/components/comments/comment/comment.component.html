@@ -18,9 +18,12 @@
         <div class="panel-body">
           <header class="text-left">
             <div class="comment-user">
-              <i class="fa fa-user"></i> {{comment.author}}</div>
-            <time class="comment-date">
-              <i class="fa fa-clock-o"></i> {{comment._kmd.lmt | date: 'dd/MM/yyyy - HH:mm'}}</time>
+              <i class="fa fa-user"></i> {{comment.author}}
+
+              <time class="comment-date">
+                <i class="fa fa-clock-o"></i> {{comment._kmd.lmt | date: 'dd/MM/yyyy - HH:mm'}}
+              </time>
+            </div>
           </header>
           <div class="comment-post">
             <p>
