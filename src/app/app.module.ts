@@ -28,7 +28,7 @@ import { HeaderComponent } from './components/common/header/header.component';
 import { LikedMemesComponent } from './components/memes/liked-memes/liked-memes.component';
 import { EditMemeComponent } from './components/memes/edit-meme/edit-meme.component';
 import { SearchbarComponent } from './components/common/searchbar/searchbar.component';
-import { StorageServiceService } from './services/storage-service.service';
+import { StorageService } from './services/storage-service.service';
 
 
 
@@ -64,7 +64,7 @@ import { StorageServiceService } from './services/storage-service.service';
     MemeServiceService,
     CommentService,
     UserService,
-    StorageServiceService
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

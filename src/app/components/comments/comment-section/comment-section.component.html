@@ -10,7 +10,7 @@
       <section class="comment-list">
         <div *ngIf="comments.length > 0">
           <li *ngFor="let comment of comments">
-            <app-comment   [comment]='comment'></app-comment>
+            <app-comment (deletedComment)="getComments(e)"  [comment]='comment'></app-comment>
           </li>
         </div>
         <div *ngIf="comments.length == 0">

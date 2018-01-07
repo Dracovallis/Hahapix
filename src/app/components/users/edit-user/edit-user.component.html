@@ -15,7 +15,7 @@
             </div>
             <div *ngIf="userInfo">
               <div *ngIf="userInfo[0]">
-                <img width="100" height="100" src="{{userInfo[0].avatar}}" class="avatar img" alt="avatar">
+                <img src="{{userInfo[0].avatar}}"  alt="avatar">
               </div>
 
             </div>
@@ -48,7 +48,7 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input formControlName="email" class="form-control"  type="text">
+              <input formControlName="email" class="form-control" type="text">
             </div>
           </div>
 
@@ -62,16 +62,22 @@
           <div class="form-group">
             <label class="col-lg-3 control-label">Twitter:</label>
             <div class="col-lg-8">
-              <input formControlName="twitter" class="form-control"  type="text">
+              <input formControlName="twitter" class="form-control" type="text">
             </div>
           </div>
 
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Google+:</label>
+            <div class="col-lg-8">
+              <input formControlName="google" class="form-control" type="text">
+            </div>
+          </div>
 
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
               <input id="save-btn" class="btn btn-primary" value="Save Changes" type="submit">
-             
+
               <input class="btn btn-default" value="Change Password" type="button">
               <a href="users/{{userInfo[0].username}}" class="btn btn-default danger" value="Cancel" type="button">Cancel</a>
             </div>

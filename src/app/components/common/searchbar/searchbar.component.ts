@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MemeServiceService } from '../../../services/meme-service.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { StorageServiceService } from '../../../services/storage-service.service';
+import { StorageService } from '../../../services/storage-service.service';
 
 @Component({
   selector: 'app-searchbar',
@@ -16,7 +16,7 @@ export class SearchbarComponent implements OnInit {
 
   constructor(private ms: MemeServiceService,
     private fb: FormBuilder,
-    private ss: StorageServiceService) {
+    private ss: StorageService) {
     this.searchForm = fb.group({
       'search': [null]
     })

@@ -8,6 +8,7 @@ import { MemeServiceService } from '../../../services/meme-service.service';
 })
 export class MemeComponent implements OnInit {
   currentUser = localStorage.getItem('username');
+  showRatingInfoDiv = false;
 
   @Input() meme: Object = {
     title: "",
@@ -25,17 +26,22 @@ export class MemeComponent implements OnInit {
 
   }
 
-  deleteCommet(id) {
+  deleteMeme(id) {
     var result = confirm("Want to delete?");
     if (result) {
-        this.ms.deleteMeme(id).subscribe(
-          data => {
-            this.meme = data
-            this.success(data)
-          },
-          error => { this.error(error) }
-        );
+      this.ms.deleteMeme(id).subscribe(
+        data => {
+          this.meme = data
+          this.success(data)
+        },
+        error => { this.error(error) }
+      );
     }
+  }
+
+  showRatingInfo(show) {
+
+    this.showRatingInfoDiv = show;
   }
 
   success(data) {

@@ -21,6 +21,7 @@ export class EditUserComponent implements OnInit {
   lastName: string = "";
   twitter: string = "";
   facebook: string = "";
+  google: string = "";
 
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$;/
 
@@ -38,7 +39,8 @@ export class EditUserComponent implements OnInit {
       'lastName': [null],
       'facebook': [null],
       'twitter': [null],
-      'avatar': [null]
+      'avatar': [null],
+      'google':[null]
     })
   }
 
@@ -65,7 +67,9 @@ export class EditUserComponent implements OnInit {
     this.lastName = post.lastName;
     this.facebook = post.facebook;
     this.twitter = post.twitter;
+    this.google = post.google;
     this.avatar = post.avatar;
+
 
     let id = localStorage.getItem('userId');
 
@@ -77,7 +81,8 @@ export class EditUserComponent implements OnInit {
       firstName: post.firstName,
       lastName: post.lastName,
       facebook: post.facebook,
-      twitter: post.twitter
+      twitter: post.twitter,
+      google: post.google
     }
     this.as.editUser(id, user).subscribe(
       data => { this.editSuccess(data) },
@@ -96,7 +101,8 @@ export class EditUserComponent implements OnInit {
           firstName: data[0].firstName,
           lastName: data[0].lastName,
           facebook: data[0].facebook,
-          twitter: data[0].twitter
+          twitter: data[0].twitter,
+          google: data[0].google
       })
    
   }

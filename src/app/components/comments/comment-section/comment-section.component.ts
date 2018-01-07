@@ -11,28 +11,35 @@ export class CommentSectionComponent implements OnInit {
   comments: Object;
 
   id;
-  constructor(private cs: CommentService,  private route: ActivatedRoute) { }
+  constructor(private cs: CommentService, private route: ActivatedRoute) { }
 
-  ngOnInit() {   
+  ngOnInit() {
     this.getComments();
   }
 
   getComments() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.comments = this.cs.getComments(this.id).subscribe(
-      data => {     
-        this.comments = data     
-         this.creationSuccess(data)
-         },
+      data => {
+        this.comments = data
+     
+        this.creationSuccess(this.comments)
+      },
       error => { this.creationError(error) }
     );
   }
+
+  ngOnChange() {
+    this.getComments();
+  }
+
 
   handleCommentSubmit(e) {
     this.getComments();
   }
 
   creationSuccess(data) {
+    
     console.log(data);
   }
 

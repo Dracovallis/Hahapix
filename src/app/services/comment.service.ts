@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 const appKey = "kid_S1c3oKIMG" // APP KEY HERE;
 const appSecret = "4ac5ee6ae67d4fb78f8325faac1ea1bf" // APP SECRET HERE;
-const postCommentUrl = `https://baas.kinvey.com/appdata/${appKey}/Comments`;
+const commentBaseUrl = `https://baas.kinvey.com/appdata/${appKey}/Comments`;
 const getCommentsUrl = `https://baas.kinvey.com/appdata/${appKey}/Comments/?query=`;
 
 @Injectable()
@@ -27,11 +27,21 @@ export class CommentService {
 
   create(memeModel: Object): Observable<Object> {
     return this.http.post(
-      postCommentUrl,
+      commentBaseUrl,
       JSON.stringify(memeModel),
       {
         headers: this.createAuthHeaders('Kinvey')
       }
+    )
+  }
+
+  deleteComment(id): Observable<Object> {
+    return this.http.delete(
+      commentBaseUrl + `/${id}`,
+      {
+        headers: this.createAuthHeaders('Kinvey')
+      }
+
     )
   }
 

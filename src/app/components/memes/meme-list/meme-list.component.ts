@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MemeServiceService } from '../../../services/meme-service.service';
-import { StorageServiceService } from '../../../services/storage-service.service';
+import { StorageService } from '../../../services/storage-service.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class MemeListComponent implements OnInit {
   memes: Object;
 
   constructor(private ms: MemeServiceService,
-    private ss: StorageServiceService) {
+    private ss: StorageService) {
     this.ss.searchedMemes.subscribe(data => { 
 
       this.memes = data

@@ -4,14 +4,35 @@
       <h4 class="card-title">{{meme.title}}</h4>
     </a>
     <img *ngIf="!meme.nsfw" style="width: 100%" class="card-img-top" src="{{meme.imageUrl}}" alt="MEME">
-    <img *ngIf="meme.nsfw" (click)="meme.nsfw = false" style="width: 100%" class="card-img-top nsfw" src="../../../../assets/images/NSFW.jpg" alt="NSFW">
+    <img *ngIf="meme.nsfw" (click)="meme.nsfw = false" style="width: 100%" class="card-img-top nsfw" src="../../../../assets/images/NSFW.jpg"
+      alt="NSFW">
     <div>
       <div style="float:left; margin-left: 10px">
         <h4 class="glyphicon glyphicon-user"> </h4>
         <a href="users/{{meme.author}}">{{meme.author}}</a>
         |
-        <h4 class="glyphicon glyphicon-star"> </h4>
-        <b>{{meme.rating }}</b>
+        <span (mouseenter)="showRatingInfo(true)" (mouseleave)="showRatingInfo(false)">
+          <h4 class="glyphicon glyphicon-star"></h4>
+          <b>
+            {{meme.rating }}
+          </b>
+        </span>
+        <div *ngIf="showRatingInfoDiv">
+          <div id="rating-info">
+            <div *ngIf="meme.thumbsUp.length > 0" style="float: left; margin-right: 5px">
+              <b class="glyphicon glyphicon-thumbs-up"> </b><br>
+              <li *ngFor="let likes of meme.thumbsUp">
+                {{likes}}
+              </li>
+            </div>
+            <div *ngIf="meme.thumgsDown.length > 0" style="float: right">
+                <b class="glyphicon glyphicon-thumbs-down"> </b><br>
+              <li *ngFor="let dislikes of meme.thumgsDown">
+                {{dislikes}}
+              </li>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div style="float: right; margin-right: 10px">
@@ -29,7 +50,7 @@
     <div>
 
 
-      <a *ngIf="meme.author == currentUser" (click)="deleteCommet(meme._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove"></a>
+      <a *ngIf="meme.author == currentUser" (click)="deleteMeme(meme._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove"></a>
       <a href="meme/edit/{{meme._id}}" *ngIf="meme.author == currentUser" id="creator" class="btn btn-danger glyphicon glyphicon-pencil"></a>
     </div>
 

@@ -4,18 +4,18 @@
 <div *ngIf="userInfo[0]">
   <div class="container">
     <div align="center" class="row">
-      <div  id="profile-card" class="col-xs-12 col-sm-6 col-md-10">
+      <div id="profile-card" class="col-xs-12 col-sm-6 col-md-10">
         <div class="well well-sm">
           <div class="row">
             <div *ngIf="userInfo[0]">
               <div class="col-sm-6 col-md-4">
-               
-                  <img *ngIf="!userInfo[0].avatar" src="../../../assets/images/default-pic.jpg" alt="avatar" class="img-rounded img-responsive" 
+
+                <img *ngIf="!userInfo[0].avatar" src="../../../assets/images/default-pic.jpg" alt="avatar" class="img-rounded img-responsive"
+                />
+                <a id="avatar" *ngIf="userInfo[0].avatar" target="_blank" href="{{userInfo[0].avatar}}">
+                  <img src="{{userInfo[0].avatar}}" alt="avatar" class="img-rounded img-responsive" onerror="this.onerror=null;this.src='../../../assets/images/image-problem.jpg';"
                   />
-                <a *ngIf="userInfo[0].avatar" target="_blank" href="{{userInfo[0].avatar}}">
-                    <img src="{{userInfo[0].avatar}}" alt="avatar" class="img-rounded img-responsive" onerror="this.onerror=null;this.src='../../../assets/images/image-problem.jpg';"
-                    />
-                  </a>
+                </a>
               </div>
               <div class="col-sm-6 col-md-8">
                 <h4>
@@ -24,7 +24,7 @@
                 <h4>
                   <h6>Username: {{userInfo[0].username}}</h6>
                 </h4>
-                <small>
+                <small *ngIf="userInfo[0].address">
                   <cite>{{userInfo[0].address || ''}}
                     <i class="glyphicon glyphicon-map-marker">
                     </i>
@@ -35,24 +35,32 @@
                   <br />
                   <div>
                     <div>
-                      <h6>Social links:</h6>
+                      <h6 *ngIf="userInfo[0].facebook || userInfo[0].twitter || userInfo[0].google">Social links:</h6>
                       <a *ngIf="userInfo[0].facebook" target="_blank" href="{{userInfo[0].facebook}}">
-                        <img id="logo" src="../../../assets/images/logo-facebook.png" alt="facebook logo">
+                        <img class="grow" src="../../../assets/images/logo-facebook.png" alt="facebook logo">
                       </a>
                       <a *ngIf="userInfo[0].twitter" target="_blank" type="button" href="{{userInfo[0].twitter}}">
-                        <img id="logo" src="../../../assets/images/logo-twitter.png" alt="twitter logo">
+                        <img class="grow" src="../../../assets/images/logo-twitter.png" alt="twitter logo">
+                      </a>
+                      <a *ngIf="userInfo[0].google" target="_blank" type="button" href="{{userInfo[0].google}}">
+                        <img class="grow" src="../../../assets/images/logo-google.png" alt="google+ logo">
                       </a>
                     </div>
                     <a id="edit-btn" *ngIf="userInfo[0].username === currentUser" type="button" href="users/edit/{{userInfo[0].username}}" class="glyphicon glyphicon-pencil btn btn-danger"></a>
                   </div>
-             
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <h3 align="center">Posts by {{userInfo[0].username}}</h3>
+    <div id="posts-by">
+      <b>
+        <h4 align="center">Posts by
+          <i>{{userInfo[0].username}}</i>
+        </h4>
+      </b>
+    </div>
     <app-liked-memes></app-liked-memes>
   </div>
 </div>

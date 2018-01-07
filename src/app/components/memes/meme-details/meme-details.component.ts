@@ -10,6 +10,7 @@ import { MemeServiceService } from '../../../services/meme-service.service';
 })
 export class MemeDetailsComponent implements OnInit {
   meme: Object;
+  showRatingInfoDiv = false;
 
   id;
   username = localStorage.getItem('username');
@@ -30,6 +31,11 @@ export class MemeDetailsComponent implements OnInit {
       error => { this.creationError(error) }
     );
   }
+
+  showRatingInfo(show) {
+    
+        this.showRatingInfoDiv = show;
+      }
 
   like() {
     let memeModel = this.meme;

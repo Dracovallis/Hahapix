@@ -3,11 +3,13 @@
 </div>
 <div *ngIf="user[0]">
   <article class="row">
+
     <div class="col-md-2 col-sm-2 hidden-xs">
+
       <figure class="thumbnail">
         <div *ngIf="user[0]">
           <a href="users/{{comment.author}}">
-            <img class="img-responsive" src="{{user[0].avatar}}" onerror="this.onerror=null;this.src='https://img00.deviantart.net/93f6/i/2010/155/1/1/facebook_default_picture_by_adnac.jpg';"
+            <img class="avatar" src="{{user[0].avatar}}" onerror="this.onerror=null;this.src='https://img00.deviantart.net/93f6/i/2010/155/1/1/facebook_default_picture_by_adnac.jpg';"
             />
           </a>
         </div>
@@ -23,14 +25,32 @@
               <time class="comment-date">
                 <i class="fa fa-clock-o"></i> {{comment._kmd.lmt | date: 'dd/MM/yyyy - HH:mm'}}
               </time>
+              <div id="checked" *ngIf="comment.images.length > 0">show images
+                <input type="checkbox" [(ngModel)]="checked" checked="true">
+              </div>
             </div>
+
           </header>
-          <div class="comment-post">
+          <div *ngIf="checked" class="comment-post">
             <p>
-              {{comment.content}}
+              {{comment.filteredContent}}
+              <br>
+              <li *ngFor="let imgLink of comment['images']">
+                <a target="_Blank" href="{{imgLink}}">
+                  <img class="comment-img" src="{{imgLink}}" alt="image link">
+                </a>
+              </li>
             </p>
           </div>
-
+          <div *ngIf="!checked" class="comment-post">
+            <p ng-bind-html="comment.content">
+              {{comment.content}}
+              <br>
+            </p>
+          </div>
+          <a *ngIf="comment.author == currentUser" 
+          (click)="deleteComment(comment._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove">
+          </a>
         </div>
       </div>
     </div>

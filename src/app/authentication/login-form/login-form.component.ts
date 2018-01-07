@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginModel } from '../models/login.model';
 import { AuthenticationService } from '../auth.service';
 import { Router } from '@angular/router';
+import { StorageService } from '../../services/storage-service.service';
 
 @Component({
   selector: 'app-login-form',
@@ -15,10 +16,12 @@ export class LoginFormComponent {
 
   constructor(
     private authService : AuthenticationService,
-    private router : Router
+    private router : Router,
+    private ss: StorageService
   ) {
     this.model = new LoginModel("", "");
     this.username = "";
+  
   }
 
   login () : void {
@@ -44,6 +47,7 @@ export class LoginFormComponent {
     localStorage.setItem('authtoken', data['_kmd']['authtoken']);
     localStorage.setItem('username', data['username']);
     this.loginFail = false;
+    this.ss.renameUser(data['username']);
     this.router.navigate(['/home']);
   }
 }
