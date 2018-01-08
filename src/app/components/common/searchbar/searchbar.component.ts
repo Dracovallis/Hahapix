@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MemeServiceService } from '../../../services/meme-service.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { StorageService } from '../../../services/storage-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searchbar',
@@ -9,14 +10,13 @@ import { StorageService } from '../../../services/storage-service.service';
   styleUrls: ['./searchbar.component.css']
 })
 export class SearchbarComponent implements OnInit {
-
-
   searchForm: FormGroup;
   post: any;
 
   constructor(private ms: MemeServiceService,
     private fb: FormBuilder,
-    private ss: StorageService) {
+    private ss: StorageService,
+    private router: Router) {
     this.searchForm = fb.group({
       'search': [null]
     })
@@ -32,9 +32,12 @@ export class SearchbarComponent implements OnInit {
       },
       error => { this.searchError(error) }
     );
+
+    this.router.navigate(['/search'])
   }
 
   searchSuccess(data, search) {
+
     let filteredMemes = [];
 
     data.forEach(element => {
@@ -42,7 +45,9 @@ export class SearchbarComponent implements OnInit {
         filteredMemes.push(element);
       }
     });
+  
     this.ss.getMemes(filteredMemes);
+   
   }
 
   searchError(error) {

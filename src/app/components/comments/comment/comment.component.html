@@ -18,10 +18,9 @@
     <div class="col-md-10 col-sm-10">
       <div class="panel panel-default arrow left">
         <div class="panel-body">
-          <header class="text-left">
-            <div class="comment-user">
+          <header class="text-left ">
+            <div class="comment-user comment-info">
               <i class="fa fa-user"></i> {{comment.author}}
-
               <time class="comment-date">
                 <i class="fa fa-clock-o"></i> {{comment._kmd.lmt | date: 'dd/MM/yyyy - HH:mm'}}
               </time>
@@ -29,27 +28,26 @@
                 <input type="checkbox" [(ngModel)]="checked" checked="true">
               </div>
             </div>
-
           </header>
-          <div *ngIf="checked" class="comment-post">
-            <p>
+          <div class="comment-post">
+            <p *ngIf="comment.filteredContent != ''">
               {{comment.filteredContent}}
               <br>
+            </p>
+            <div *ngIf="checked">
               <li *ngFor="let imgLink of comment['images']">
                 <a target="_Blank" href="{{imgLink}}">
-                  <img class="comment-img" src="{{imgLink}}" alt="image link">
+                  <img class="comment-image" class="comment-img" src="{{imgLink}}" alt="image link">
                 </a>
               </li>
-            </p>
+            </div>
+            <div *ngIf="!checked">
+              <li *ngFor="let imgLink of comment['images']">          
+                <a target="_Blank" href="{{imgLink}}">{{imgLink}}</a>
+              </li>
+            </div>
           </div>
-          <div *ngIf="!checked" class="comment-post">
-            <p ng-bind-html="comment.content">
-              {{comment.content}}
-              <br>
-            </p>
-          </div>
-          <a *ngIf="comment.author == currentUser" 
-          (click)="deleteComment(comment._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove">
+          <a *ngIf="comment.author == currentUser" (click)="deleteComment(comment._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove">
           </a>
         </div>
       </div>

@@ -29,6 +29,7 @@ import { LikedMemesComponent } from './components/memes/liked-memes/liked-memes.
 import { EditMemeComponent } from './components/memes/edit-meme/edit-meme.component';
 import { SearchbarComponent } from './components/common/searchbar/searchbar.component';
 import { StorageService } from './services/storage-service.service';
+import { SearchResultsComponent } from './components/memes/search-results/search-results.component';
 
 
 
@@ -50,7 +51,8 @@ import { StorageService } from './services/storage-service.service';
     HeaderComponent,
     LikedMemesComponent,
     EditMemeComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,

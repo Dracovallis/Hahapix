@@ -1,16 +1,18 @@
 /*font Awesome http://fontawesome.io*/
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 /*Comment List styles*/
+
 .comment-list .row {
   margin-bottom: 0px;
 }
+
 .comment-list .panel .panel-heading {
   padding: 4px 15px;
   position: absolute;
-  border:none;
+  border: none;
   /*Panel-heading border radius*/
-  border-top-right-radius:0px;
+  border-top-right-radius: 0px;
   top: 1px;
 }
 
@@ -18,7 +20,9 @@
   /*For wrapping text in thumbnail*/
   word-wrap: break-word;
 }
+
 /* Portrait tablets and medium desktops */
+
 @media (min-width: 768px) {
   .comment-list .arrow:after, .comment-list .arrow:before {
     content: "";
@@ -66,30 +70,41 @@
     border-width: 15px;
   }
 }
+
 .comment-list .comment-post {
   margin-top: 12px;
 }
 
-.li { 
+#checked {
+  float: right;
+}
+
+.li {
   list-style: none
- }
+}
 
- .comment-img {
-   width: 500px;
-   height: auto;
-   margin-top: 10px;
-   margin-bottom: 10px;
- }
+.comment-img {
+  width: 500px;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
- #checked {
-   float: right;
- }
-
- #creator {
-   float: right;
- }
+#creator {
+  float: right;
+}
 
 .avatar {
-   max-height: 107px;
-   max-width: 90px;
- }
+  max-height: 107px;
+  max-width: 90px;
+}
+
+.comment-img {
+  max-width: 600px;
+}
+
+.comment-info {
+  font-style: italic;
+  color: rgb(70, 70, 70);
+  margin-bottom: 20px;
+}

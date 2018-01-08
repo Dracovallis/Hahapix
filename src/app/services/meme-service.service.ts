@@ -115,7 +115,7 @@ export class MemeServiceService {
 
   getSearchedMemes(): Observable<Object> {
     return this.http.get(
-      memeQueryUrl,
+      memeBaseUrl,
       {
         headers: this.createAuthHeaders('Kinvey')
       }

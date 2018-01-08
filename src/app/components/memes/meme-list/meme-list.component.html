@@ -1,5 +1,5 @@
-
-<button (click)="getFreshMemes($event)" type="button" class="btn btn-dark">Fresh</button>
+<button (click)="getFreshMemes($event)" type="button" class="btn btn-dark">
+  Fresh</button>
 <button (click)="getHotMemes($event)" type="button" class="btn btn-dark">Hot</button>
 <button (click)="getMemesByCategory($event,'animals')" type="button" class="btn btn-dark">Animals</button>
 <button (click)="getMemesByCategory($event,'dark humor')" type="button" class="btn btn-dark">Dark Humor</button>
@@ -8,6 +8,7 @@
 <div *ngIf="!memes[0] && memes.length !== 0">
   <app-loading-spinner></app-loading-spinner>
 </div>
+
 <div *ngIf="memes">
   <div align="center">
     <ul>
