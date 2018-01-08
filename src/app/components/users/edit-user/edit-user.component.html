@@ -1,7 +1,7 @@
-<div *ngIf="!userInfo[0]">
+<div *ngIf="!editUserInfo">
   <app-loading-spinner></app-loading-spinner>
 </div>
-<div *ngIf="userInfo[0]">
+<div *ngIf="editUserInfo">
   <div class="container">
     <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm.value)" class="form-horizontal" role="form">
       <h1>Edit Profile</h1>
@@ -10,12 +10,12 @@
         <!-- left column -->
         <div class="col-md-3">
           <div class="text-center">
-            <div *ngIf="!userInfo">
+            <div *ngIf="!editUserInfo">
               <img src="//placehold.it/100" class="avatar img" alt="avatar">
             </div>
-            <div *ngIf="userInfo">
-              <div *ngIf="userInfo[0]">
-                <img src="{{userInfo[0].avatar}}"  alt="avatar">
+            <div *ngIf="editUserInfo">
+              <div *ngIf="editUserInfo">
+                <img src="{{editUserInfo.avatar}}"  alt="avatar">
               </div>
 
             </div>
@@ -79,7 +79,7 @@
               <input id="save-btn" class="btn btn-primary" value="Save Changes" type="submit">
 
               <input class="btn btn-default" value="Change Password" type="button">
-              <a href="users/{{userInfo[0].username}}" class="btn btn-default danger" value="Cancel" type="button">Cancel</a>
+              <a href="users/{{editUserInfo.username}}" class="btn btn-default danger" value="Cancel" type="button">Cancel</a>
             </div>
           </div>
 

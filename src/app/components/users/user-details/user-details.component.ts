@@ -8,20 +8,30 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-details.component.css']
 })
 export class UserDetailsComponent implements OnInit {
-  userInfo: Object;
-  currentUser = localStorage.getItem('username');
+  userInfo: Object = {};
+  currentUser: Object = [];
 
-  constructor(private as: AuthenticationService,private route: ActivatedRoute) { }
+  constructor(private as: AuthenticationService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let username  = this.route.snapshot.paramMap.get('username');
-    this.userInfo = this.as.getUser(username).subscribe(
+    let username = this.route.snapshot.paramMap.get('username');
+    this.as.getUser(username).subscribe(
       data => {
         this.userInfo = data
         this.success(data)
       },
       error => {
-        this.creationError(error) 
+        this.creationError(error)
+      }
+    )
+
+    this.as.getUser(localStorage.getItem('username')).subscribe(
+      data => {
+        this.currentUser = data;
+        this.success(data)
+      },
+      error => {
+        this.creationError(error)
       }
     )
   }

@@ -1,7 +1,7 @@
-<div *ngIf="!userInfo[0]">
+<div *ngIf="!userInfo[0] && !currentUser[0]">
   <app-loading-spinner></app-loading-spinner>
 </div>
-<div *ngIf="userInfo[0]">
+<div *ngIf="userInfo[0] && currentUser[0] ">
   <div class="container">
     <div align="center" class="row">
       <div id="profile-card" class="col-xs-12 col-sm-6 col-md-10">
@@ -46,7 +46,8 @@
                         <img class="grow" src="../../../assets/images/logo-google.png" alt="google+ logo">
                       </a>
                     </div>
-                    <a id="edit-btn" *ngIf="userInfo[0].username === currentUser" type="button" href="users/edit/{{userInfo[0].username}}" class="glyphicon glyphicon-pencil btn btn-danger"></a>
+                    <a id="edit-btn" *ngIf="userInfo[0].username === currentUser[0].username || currentUser[0].isAdmin" routerLink="/users/edit/{{userInfo[0].username}}"
+                      class="glyphicon glyphicon-pencil btn btn-danger"></a>
                   </div>
               </div>
             </div>

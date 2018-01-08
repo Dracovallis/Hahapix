@@ -15,6 +15,8 @@ import { SearchResultsComponent } from './components/memes/search-results/search
 
 // Guards
 import { AuthGuard } from './guards/auth.guard.service';
+import { OwnerGuard } from './guards/owner.guard';
+import { ProfileGuard } from './guards/profile.guard';
 
 
 
@@ -23,13 +25,13 @@ const routes: Routes = [
   { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
   { path: 'create', canActivate: [AuthGuard], component: CreateMemeComponent },
   { path: 'meme/:id', component: MemeDetailsComponent },
-  { path: 'meme/edit/:id', component: EditMemeComponent },
+  { path: 'meme/edit/:id', canActivate: [OwnerGuard], component: EditMemeComponent },
   { path: 'search', component: SearchResultsComponent },
   { path: 'register', component: RegisterFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'users/:username', component: UserDetailsComponent },
-  { path: 'users/edit/:username', component: EditUserComponent }
+  { path: 'users/:username', canActivate: [AuthGuard], component: UserDetailsComponent },
+  { path: 'users/edit/:username', canActivate: [ProfileGuard, AuthGuard], component: EditUserComponent }
 
 ]
 @NgModule({

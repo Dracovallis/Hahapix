@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
-  userInfo: Object;
+  editUserInfo: Object;
   createForm: FormGroup;
   post: any;
 
@@ -31,7 +31,7 @@ export class EditUserComponent implements OnInit {
     private router: Router,
     private authService: AuthenticationService
   ) {
-    this.createForm = this.fb.group({      
+    this.createForm = this.fb.group({
       'address': [null, Validators.required],
       'email': [null, Validators.compose([
         Validators.required, Validators.pattern(this.emailRegex)])],
@@ -40,15 +40,16 @@ export class EditUserComponent implements OnInit {
       'facebook': [null],
       'twitter': [null],
       'avatar': [null],
-      'google':[null]
+      'google': [null]
     })
   }
 
   ngOnInit() {
-    let username = this.route.snapshot.paramMap.get('username');
-    this.userInfo = this.as.getUser(username).subscribe(
+    let editUserName = this.route.snapshot.paramMap.get('username');
+
+    this.as.getUser(editUserName).subscribe(
       data => {
-        this.userInfo = data
+        this.editUserInfo = data[0]
         this.getUserSuccess(data)
       },
       error => {
@@ -56,7 +57,7 @@ export class EditUserComponent implements OnInit {
       }
     )
 
-  
+
   }
 
   onSubmit(post) {
@@ -71,7 +72,7 @@ export class EditUserComponent implements OnInit {
     this.avatar = post.avatar;
 
 
-    let id = localStorage.getItem('userId');
+    let id = (this.editUserInfo['_id']);
 
     let user = {
       username: post.username,
@@ -82,7 +83,8 @@ export class EditUserComponent implements OnInit {
       lastName: post.lastName,
       facebook: post.facebook,
       twitter: post.twitter,
-      google: post.google
+      google: post.google,
+      isAdmin: this.editUserInfo['isAdmin']
     }
     this.as.editUser(id, user).subscribe(
       data => { this.editSuccess(data) },
@@ -93,26 +95,28 @@ export class EditUserComponent implements OnInit {
   getUserSuccess(data) {
     console.log(data);
     this.createForm.patchValue(
-      {         
-          username: data[0].username,
-          avatar: data[0].avatar,
-          address: data[0].address,
-          email: data[0].email,
-          firstName: data[0].firstName,
-          lastName: data[0].lastName,
-          facebook: data[0].facebook,
-          twitter: data[0].twitter,
-          google: data[0].google
+      {
+        username: data[0].username,
+        avatar: data[0].avatar,
+        address: data[0].address,
+        email: data[0].email,
+        firstName: data[0].firstName,
+        lastName: data[0].lastName,
+        facebook: data[0].facebook,
+        twitter: data[0].twitter,
+        google: data[0].google
       })
-   
+
   }
 
   editSuccess(data) {
-    console.log(data)
-    this.authService.authtoken = data['_kmd']['authtoken'];
-    localStorage.setItem('authtoken', data['_kmd']['authtoken']);
-    localStorage.setItem('username', data.username);
+    if (this.editUserInfo['username'] == localStorage.getItem('username')) {
+      this.authService.authtoken = data['_kmd']['authtoken'];
+      localStorage.setItem('authtoken', data['_kmd']['authtoken']);
+      localStorage.setItem('username', data.username);
 
+    
+    }
     this.router.navigate(['/users/' + data.username])
   }
 

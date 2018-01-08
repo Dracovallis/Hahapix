@@ -7,7 +7,7 @@ import { MemeServiceService } from '../../../services/meme-service.service';
   styleUrls: ['./meme.component.css']
 })
 export class MemeComponent implements OnInit {
-  currentUser = localStorage.getItem('username');
+
   showRatingInfoDiv = false;
 
   @Input() meme: Object = {
@@ -19,11 +19,12 @@ export class MemeComponent implements OnInit {
     thumgsDown: [],
     rating: 0
   }
+  @Input() currentUser: Object = {};
 
   constructor(private ms: MemeServiceService) { }
 
   ngOnInit() {
-
+    console.log(this.currentUser)
   }
 
   deleteMeme(id) {

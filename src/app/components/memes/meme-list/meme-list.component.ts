@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MemeServiceService } from '../../../services/meme-service.service';
 import { StorageService } from '../../../services/storage-service.service';
+import { AuthenticationService } from '../../../authentication/auth.service';
 
 @Component({
   selector: 'app-meme-list',
@@ -9,9 +10,11 @@ import { StorageService } from '../../../services/storage-service.service';
 })
 export class MemeListComponent implements OnInit {
   memes: Object;
+  currentUser: Object;
 
   constructor(private ms: MemeServiceService,
-    private ss: StorageService) {
+    private ss: StorageService,
+    private as: AuthenticationService) {
   }
 
 
@@ -25,7 +28,13 @@ export class MemeListComponent implements OnInit {
       error => { this.creationError(error) }
     );
 
-
+    this.as.getUser(localStorage.getItem('username')).subscribe (
+      data => {
+        this.currentUser = data[0];
+   
+      }
+     )
+   
   }
 
 
@@ -44,7 +53,7 @@ export class MemeListComponent implements OnInit {
   getHotMemes() {
     this.memes = this.ms.getHotMemes().subscribe(
       data => {
-    
+
         this.memes = data
         this.creationSuccess(data)
       },
@@ -53,10 +62,9 @@ export class MemeListComponent implements OnInit {
   }
 
   getMemesByCategory(e, category) {
-    console.log(category)
     this.memes = this.ms.getMemesByCategory(category).subscribe(
       data => {
-     
+
         this.memes = data
         this.creationSuccess(data)
       },

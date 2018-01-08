@@ -42,12 +42,14 @@ export class LoginFormComponent {
 
   successfulLogin(data) : void {
     this.authService.authtoken = data['_kmd']['authtoken'];
-    this.authService.userId = data['_id']
+    this.authService.currentUser = data;
     localStorage.setItem('userId',data['_id'])
     localStorage.setItem('authtoken', data['_kmd']['authtoken']);
     localStorage.setItem('username', data['username']);
     this.loginFail = false;
     this.ss.renameUser(data['username']);
     this.router.navigate(['/home']);
+
+    console.log(this.authService.currentUser)
   }
 }

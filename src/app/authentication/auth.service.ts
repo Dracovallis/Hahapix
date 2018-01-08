@@ -16,21 +16,25 @@ const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}/`;
 
 @Injectable()
 export class AuthenticationService {
-  private currentAuthtoken : string;
+  private currentAuthtoken: string;
   private currentUserId: string;
+  private user: Object;
+
   constructor(
-    private http : HttpClient
+    private http: HttpClient
   ) { }
 
-  get userId() {
-    return this.currentUserId || localStorage.getItem('userId')
+  set currentUser(value: Object) {
+    this.user = value;
   }
 
-  set userId(value: string) {
-    this.currentUserId = value;
+  get currentUser() {
+    return this.user;
   }
 
-  login(loginModel : LoginModel) {
+  
+
+  login(loginModel: LoginModel) {
     return this.http.post(
       loginUrl,
       JSON.stringify(loginModel),
@@ -52,7 +56,7 @@ export class AuthenticationService {
 
   getUser(username) {
     let query = {
-      "username":username
+      "username": username
     }
     return this.http.get(
       usersBaseUrl + `?query={"username":"${username}"}`,
@@ -63,11 +67,11 @@ export class AuthenticationService {
     )
   }
 
-  register(registerModel : Object) : Observable<Object> {
+  register(registerModel: Object): Observable<Object> {
     return this.http.post(
-      registerUrl, 
+      registerUrl,
       JSON.stringify(registerModel),
-      { 
+      {
         headers: this.createAuthHeaders('Basic')
       }
     )
@@ -84,7 +88,7 @@ export class AuthenticationService {
   }
 
   isLoggedIn() {
-    let authtoken : string = localStorage.getItem('authtoken');
+    let authtoken: string = localStorage.getItem('authtoken');
 
     return localStorage.getItem('authtoken');
   }
@@ -93,11 +97,11 @@ export class AuthenticationService {
     return this.currentAuthtoken;
   }
 
-  set authtoken(value : string) {
+  set authtoken(value: string) {
     this.currentAuthtoken = value;
   }
 
-  private createAuthHeaders(type : string) : HttpHeaders {
+  private createAuthHeaders(type: string): HttpHeaders {
     if (type === 'Basic') {
       return new HttpHeaders({
         'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,

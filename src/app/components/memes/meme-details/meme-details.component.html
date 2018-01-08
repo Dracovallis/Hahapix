@@ -9,7 +9,7 @@
       <div>
         <div style="float:left; margin-left: 10px">
           <h4 class="glyphicon glyphicon-user"> </h4>
-          <a href="users/{{meme.author}}">{{meme.author}}</a>
+          <a routerLink="/users/{{meme.author}}">{{meme.author}}</a>
           |
           <span (mouseenter)="showRatingInfo(true)" (mouseleave)="showRatingInfo(false)">
             <h4 class="glyphicon glyphicon-star"> </h4>

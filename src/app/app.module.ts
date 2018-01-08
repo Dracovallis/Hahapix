@@ -20,7 +20,7 @@ import { EditUserComponent } from './components/users/edit-user/edit-user.compon
 import { UserService } from './services/user.service';
 
 // Services
-import { AuthGuard } from './guards/auth.guard.service';
+
 import { MemeServiceService } from './services/meme-service.service';
 import { CommentService } from './services/comment.service';
 import { LoadingSpinnerComponent } from './components/common/loading-spinner/loading-spinner.component';
@@ -31,7 +31,10 @@ import { SearchbarComponent } from './components/common/searchbar/searchbar.comp
 import { StorageService } from './services/storage-service.service';
 import { SearchResultsComponent } from './components/memes/search-results/search-results.component';
 
-
+// Guards
+import { AuthGuard } from './guards/auth.guard.service';
+import { OwnerGuard } from './guards/owner.guard';
+import { ProfileGuard } from './guards/profile.guard';
 
 
 @NgModule({
@@ -63,6 +66,8 @@ import { SearchResultsComponent } from './components/memes/search-results/search
   ],
   providers: [
     AuthGuard,
+    OwnerGuard,
+    ProfileGuard,
     MemeServiceService,
     CommentService,
     UserService,
