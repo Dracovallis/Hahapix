@@ -24,7 +24,7 @@ export class MemeComponent implements OnInit {
   constructor(private ms: MemeServiceService) { }
 
   ngOnInit() {
-    console.log(this.currentUser)
+ 
   }
 
   deleteMeme(id) {

@@ -35,6 +35,7 @@ import { SearchResultsComponent } from './components/memes/search-results/search
 import { AuthGuard } from './guards/auth.guard.service';
 import { OwnerGuard } from './guards/owner.guard';
 import { ProfileGuard } from './guards/profile.guard';
+import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ProfileGuard } from './guards/profile.guard';
     LikedMemesComponent,
     EditMemeComponent,
     SearchbarComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

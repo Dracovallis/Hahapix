@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { CommentService } from '../../../services/comment.service';
+import { AuthenticationService } from '../../../authentication/auth.service';
 
 @Component({
   selector: 'app-comment',
@@ -12,7 +13,8 @@ export class CommentComponent implements OnInit {
 
   user: Object;
   checked = true;
-  currentUser = localStorage.getItem('username');
+  currentUsername = localStorage.getItem('username');
+  currentUser = Object;
   
   @Input() comment: Object = {
     content: "",
@@ -21,7 +23,7 @@ export class CommentComponent implements OnInit {
     images: []
   }
 
-  constructor(private us: UserService, private cs: CommentService) { }
+  constructor(private us: UserService,private as: AuthenticationService, private cs: CommentService) { }
 
   ngOnInit() {
     this.extractImages();
@@ -32,6 +34,13 @@ export class CommentComponent implements OnInit {
       },
       error => { this.creationError(error) }
     );
+
+    this.as.getUser(this.currentUsername).subscribe(
+      data => {
+        this.currentUser = data[0];
+      }
+    )
+    
   }
 
   extractImages() {
@@ -45,12 +54,7 @@ export class CommentComponent implements OnInit {
     }
 
     this.comment['filteredContent'] = this.comment['content'].replace(rex, "")
-    //for (let url of this.comment['images']) {
-    //  this.comment['content'] = this.comment['content'].replace(url, `<a target="_Blank" href="${url}">${url}<a/>`)
-   // }
-    
 
-    console.log(this.comment['content'])
   }
 
   deleteComment(id) {

@@ -47,7 +47,7 @@
               </li>
             </div>
           </div>
-          <a *ngIf="comment.author == currentUser" (click)="deleteComment(comment._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove">
+          <a *ngIf="comment.author == currentUser.username || currentUser.isAdmin" (click)="deleteComment(comment._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove">
           </a>
         </div>
       </div>

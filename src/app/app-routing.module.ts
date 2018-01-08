@@ -17,6 +17,7 @@ import { SearchResultsComponent } from './components/memes/search-results/search
 import { AuthGuard } from './guards/auth.guard.service';
 import { OwnerGuard } from './guards/owner.guard';
 import { ProfileGuard } from './guards/profile.guard';
+import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
 
 
 
@@ -31,7 +32,9 @@ const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'users/:username', canActivate: [AuthGuard], component: UserDetailsComponent },
-  { path: 'users/edit/:username', canActivate: [ProfileGuard, AuthGuard], component: EditUserComponent }
+  { path: 'users/edit/:username', canActivate: [ProfileGuard, AuthGuard], component: EditUserComponent },
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/not-found' }
 
 ]
 @NgModule({
