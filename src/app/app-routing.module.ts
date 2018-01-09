@@ -6,7 +6,7 @@ import { RegisterFormComponent } from './authentication/register-form/register-f
 import { LoginFormComponent } from './authentication/login-form/login-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { LogoutComponent } from './authentication/logout-component/logout.component';
-import { CreateMemeComponent } from './components/create-meme/create-meme.component';
+import { CreateMemeComponent } from './components/memes/create-meme/create-meme.component';
 import { MemeDetailsComponent } from './components/memes/meme-details/meme-details.component';
 import { UserDetailsComponent } from './components/users/user-details/user-details.component';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';

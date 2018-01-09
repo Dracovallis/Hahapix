@@ -3,7 +3,7 @@ import { LoginModel } from '../models/login.model';
 import { AuthenticationService } from '../auth.service';
 import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage-service.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 
 @Component({
   selector: 'app-login-form',
@@ -19,11 +19,10 @@ export class LoginFormComponent {
     private authService: AuthenticationService,
     private router: Router,
     private ss: StorageService,
-    public toastr: ToastsManager, vcr: ViewContainerRef
   ) {
     this.model = new LoginModel("", "");
     this.username = "";
-    this.toastr.setRootViewContainerRef(vcr);
+
 
   }
 
@@ -52,12 +51,12 @@ export class LoginFormComponent {
     this.loginFail = false;
     this.ss.renameUser(data['username']);
     this.router.navigate(['/home']);
-    this.toastr.success('Login success!', 'Success!');
+
     this.showSuccess();
     console.log(this.authService.currentUser)
   }
 
   showSuccess() {
-    this.toastr.success('Login success!', 'Success!');
+
   }
 }

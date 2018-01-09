@@ -4,13 +4,12 @@ import { NgModule } from '@angular/core';
 import { AuthenticationModule } from './authentication/auth.module';
 import { AppRoutesModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { CreateMemeComponent } from './components/create-meme/create-meme.component';
+import { CreateMemeComponent } from './components/memes/create-meme/create-meme.component';
 import { MemeListComponent } from './components/memes/meme-list/meme-list.component';
 import { MemeComponent } from './components/memes/meme/meme.component';
 import { MemeDetailsComponent } from './components/memes/meme-details/meme-details.component';
@@ -69,7 +68,6 @@ import { AdminGuard } from './guards/admin.guard';
   ],
   imports: [
     BrowserModule,
-    ToastModule.forRoot(),
     BrowserAnimationsModule,
     AuthenticationModule,
     AppRoutesModule,
