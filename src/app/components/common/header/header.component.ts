@@ -10,16 +10,29 @@ import { StorageService } from '../../../services/storage-service.service';
 export class HeaderComponent implements OnInit {
   title = 'HaHa Pix';
   username = "";
+  isAdmin = false;
 
-  constructor( private authService: AuthenticationService, private ss: StorageService) { 
+  constructor(private authService: AuthenticationService, private ss: StorageService) {
     this.username = localStorage.getItem('username');
 
     this.ss.changeUsername.subscribe(data => {
       this.username = data;
+      this.isAdmin = false;
+
+      if (this.username) {
+        this.authService.getUser(this.username).subscribe(data => {
+          this.isAdmin = data[0]['isAdmin']
+        }, error => { })
+      }
     })
   }
 
   ngOnInit() {
+    if (this.username) {
+      this.authService.getUser(this.username).subscribe(data => {
+        this.isAdmin = data[0]['isAdmin']
+      })
+    }
   }
 
 }

@@ -47,7 +47,7 @@
 
 
     </div>
-    <div>
+    <div *ngIf="currentUser">
 
 
       <a *ngIf="meme.author == currentUser.username || currentUser.isAdmin" (click)="deleteMeme(meme._id)" id="creator" class="btn btn-danger glyphicon glyphicon-remove"></a>

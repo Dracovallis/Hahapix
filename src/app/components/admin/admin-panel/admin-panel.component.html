@@ -1,0 +1,16 @@
+<button align="center" (click)="getUsers($event)" type="button" class="btn btn-dark">
+  Users</button>
+
+
+
+<div *ngIf="users">
+  <div align="center">
+    <ul>
+      <div *ngIf="users.length > 0">
+        <li *ngFor="let user of users">
+          <app-user-list [user]='user'></app-user-list>
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>

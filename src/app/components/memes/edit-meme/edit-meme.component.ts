@@ -18,13 +18,21 @@ export class EditMemeComponent implements OnInit {
   category: string = "";
   nsfw: boolean = false;
 
+  imageRegex = /https?:\/\/.*\.(?:png|jpg)[?]?[\w=&]*/i;
+
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private ms: MemeServiceService) {
     this.createForm = fb.group({
-      'title': [null, Validators.required],
-      'imageUrl': [null, Validators.required],
+      'title': [null, Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20)])],
+      'imageUrl': [null, Validators.compose([
+        Validators.required,
+        Validators.pattern(this.imageRegex)]
+      )],
       'category': [null, Validators.required],
       'nsfw': [false, ""]
     })

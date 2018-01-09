@@ -44,13 +44,22 @@ export class MemeServiceService {
   }
 
   getMemes(): Observable<Object> {
-    return this.http.get(
-      memeBaseUrl,
-      {
-        headers: this.createAuthHeaders('Kinvey')
-      }
+    if (localStorage.getItem('username')) {
+      return this.http.get(
+        memeBaseUrl,
+        {
+          headers: this.createAuthHeaders('Kinvey')
+        }
 
-    )
+      )
+    } else {
+      return this.http.get(
+        memeBaseUrl,
+        {
+          headers: this.createAuthHeaders('Guest')
+        }
+      )
+    }
   }
 
   getMeme(id): Observable<Object> {
@@ -84,43 +93,80 @@ export class MemeServiceService {
   }
 
   getFreshMemes(): Observable<Object> {
-    return this.http.get(
-      memeBaseUrl + `?query={}&sort={"_kmd.ect": -1}`,
-      {
-        headers: this.createAuthHeaders('Kinvey')
-      }
+    if (localStorage.getItem('username')) {
+      return this.http.get(
+        memeBaseUrl,
+        {
+          headers: this.createAuthHeaders('Kinvey')
+        }
 
-    )
+      )
+    } else {
+      return this.http.get(
+        memeBaseUrl,
+        {
+          headers: this.createAuthHeaders('Guest')
+        }
+      )
+    }
   }
 
   getHotMemes(): Observable<Object> {
-    return this.http.get(
-      memeQueryUrl + `?query={}&sort={"rating": -1}`,
-      {
-        headers: this.createAuthHeaders('Kinvey')
-      }
+    if (localStorage.getItem('username')) {
+      return this.http.get(
+        memeQueryUrl + `?query={}&sort={"rating": -1}`,
+        {
+          headers: this.createAuthHeaders('Kinvey')
+        }
 
-    )
+      )
+    } else {
+      return this.http.get(
+        memeBaseUrl + `?query={}&sort={"rating": -1}`,
+        {
+          headers: this.createAuthHeaders('Guest')
+        }
+      )
+    }
   }
 
   getMemesByCategory(category): Observable<Object> {
-    return this.http.get(
-      memeQueryUrl + `?query={"category":"${category}"}`,
-      {
-        headers: this.createAuthHeaders('Kinvey')
-      }
+    if (localStorage.getItem('username')) {
+      return this.http.get(
+        memeQueryUrl + `?query={"category":"${category}"}`,
+        {
+          headers: this.createAuthHeaders('Kinvey')
+        }
 
-    )
+      )
+    } else {
+      return this.http.get(
+        memeQueryUrl + `?query={"category":"${category}"}`,
+        {
+          headers: this.createAuthHeaders('Guest')
+        }
+      )
+    }
   }
 
   getSearchedMemes(): Observable<Object> {
-    return this.http.get(
-      memeBaseUrl,
-      {
-        headers: this.createAuthHeaders('Kinvey')
-      }
+    if (localStorage.getItem('username')) {
+      return this.http.get(
+        memeBaseUrl,
+        {
+          headers: this.createAuthHeaders('Kinvey')
+        }
 
-    )
+      )
+    } else {
+      return this.http.get(
+        memeBaseUrl,
+        {
+          headers: this.createAuthHeaders('Guest')
+        }
+
+      )
+    }
   }
 
   getMemesByUser(username): Observable<Object> {
@@ -142,9 +188,14 @@ export class MemeServiceService {
         'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
         'Content-Type': 'application/json'
       })
-    } else {
+    } else if (type === 'Kinvey') {
       return new HttpHeaders({
         'Authorization': `Kinvey ${localStorage.getItem('authtoken')}`,
+        'Content-Type': 'application/json'
+      })
+    } else if (type === 'Guest') {
+      return new HttpHeaders({
+        'Authorization': `Basic ${btoa(`guest:guest`)}`,
         'Content-Type': 'application/json'
       })
     }

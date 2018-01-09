@@ -1,4 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -14,12 +15,11 @@
     </ul>
     <ul *ngIf="authService.isLoggedIn()" class="nav navbar-nav">
       <li>
-        <a routerLink="/home">Home</a>
-      </li>
-      <li>
         <a routerLink="/create">Upload</a>
       </li>
-
+      <li *ngIf="isAdmin">
+        <a routerLink="/admin">Admin Panel</a>
+      </li>
     </ul>
     <app-searchbar></app-searchbar>
     <ul *ngIf="authService.isLoggedIn()" class="nav navbar-nav">
@@ -30,6 +30,7 @@
         <a routerLink="/users/{{username}}">Hello, {{username}}!</a>
       </li>
     </ul>
-
   </div>
 </nav>
+
+<script src="../../../../../node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>

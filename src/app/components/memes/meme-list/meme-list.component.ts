@@ -27,14 +27,15 @@ export class MemeListComponent implements OnInit {
       },
       error => { this.creationError(error) }
     );
+    
+    if (localStorage.getItem('username')) {
+      this.as.getUser(localStorage.getItem('username')).subscribe(
+        data => {
+          this.currentUser = data[0];
 
-    this.as.getUser(localStorage.getItem('username')).subscribe (
-      data => {
-        this.currentUser = data[0];
-   
-      }
-     )
-   
+        }
+      )
+    }
   }
 
 

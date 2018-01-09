@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AuthenticationModule } from './authentication/auth.module';
 import { AppRoutesModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { AppComponent } from './app.component';
@@ -30,12 +32,16 @@ import { EditMemeComponent } from './components/memes/edit-meme/edit-meme.compon
 import { SearchbarComponent } from './components/common/searchbar/searchbar.component';
 import { StorageService } from './services/storage-service.service';
 import { SearchResultsComponent } from './components/memes/search-results/search-results.component';
+import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
 
 // Guards
 import { AuthGuard } from './guards/auth.guard.service';
 import { OwnerGuard } from './guards/owner.guard';
 import { ProfileGuard } from './guards/profile.guard';
-import { PageNotFoundComponent } from './components/common/page-not-found/page-not-found.component';
+import { UserListComponent } from './components/admin/user-list/user-list.component';
+import { AdminGuard } from './guards/admin.guard';
+
 
 
 @NgModule({
@@ -57,10 +63,14 @@ import { PageNotFoundComponent } from './components/common/page-not-found/page-n
     EditMemeComponent,
     SearchbarComponent,
     SearchResultsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AdminPanelComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
+    ToastModule.forRoot(),
+    BrowserAnimationsModule,
     AuthenticationModule,
     AppRoutesModule,
     FormsModule,
@@ -68,6 +78,7 @@ import { PageNotFoundComponent } from './components/common/page-not-found/page-n
   ],
   providers: [
     AuthGuard,
+    AdminGuard,
     OwnerGuard,
     ProfileGuard,
     MemeServiceService,

@@ -12,7 +12,7 @@
 <div *ngIf="memes">
   <div align="center">
     <ul>
-      <div *ngIf="memes.length > 0 && currentUser">
+      <div *ngIf="memes.length > 0">
         <li *ngFor="let meme of memes">
           <app-meme [meme]='meme' [currentUser]='currentUser'></app-meme>
         </li>

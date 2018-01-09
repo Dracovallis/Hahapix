@@ -23,7 +23,14 @@ export class EditUserComponent implements OnInit {
   facebook: string = "";
   google: string = "";
 
-  emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$;/
+  regexPatterns = {
+    email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i,
+    imageUrl: /https?:\/\/.*\.(?:png|jpg)[?]?[\w=&]*/i,
+    facebook: /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/i,
+    twitter: /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)/i,
+    google: /http(?:s)?:\/\/(?:www\.)?plus.google\.com\/([a-zA-Z0-9_]+)/i
+  }
+
 
   constructor(private as: AuthenticationService,
     private route: ActivatedRoute,
@@ -32,15 +39,16 @@ export class EditUserComponent implements OnInit {
     private authService: AuthenticationService
   ) {
     this.createForm = this.fb.group({
-      'address': [null, Validators.required],
+      'avatar': [null, Validators.pattern(this.regexPatterns.imageUrl)],
+      'address': [null],
       'email': [null, Validators.compose([
-        Validators.required, Validators.pattern(this.emailRegex)])],
+        Validators.required,
+        Validators.pattern(this.regexPatterns.email)])],
       'firstName': [null],
       'lastName': [null],
-      'facebook': [null],
-      'twitter': [null],
-      'avatar': [null],
-      'google': [null]
+      'facebook': [null, Validators.pattern(this.regexPatterns.facebook)],
+      'twitter': [null, Validators.pattern(this.regexPatterns.twitter)],
+      'google': [null, Validators.pattern(this.regexPatterns.google)]
     })
   }
 
@@ -115,7 +123,7 @@ export class EditUserComponent implements OnInit {
       localStorage.setItem('authtoken', data['_kmd']['authtoken']);
       localStorage.setItem('username', data.username);
 
-    
+
     }
     this.router.navigate(['/users/' + data.username])
   }

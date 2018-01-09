@@ -1,0 +1,55 @@
+<div *ngIf="user">
+  <div class="container">
+    <div align="center" class="row">
+      <div id="profile-card" class="col-xs-12 col-sm-6 col-md-10">
+        <div class="well well-sm">
+          <div class="row">
+            <div *ngIf="user">
+              <div class="col-sm-6 col-md-4">
+
+                <img *ngIf="!user.avatar" src="../../../assets/images/default-pic.jpg" alt="avatar" class="img-rounded img-responsive" />
+                <a id="avatar" *ngIf="user.avatar" target="_blank" href="{{user.avatar}}">
+                  <img src="{{user.avatar}}" alt="avatar" class="img-rounded img-responsive" onerror="this.onerror=null;this.src='../../../assets/images/image-problem.jpg';"
+                  />
+                </a>
+              </div>
+              <div class="col-sm-6 col-md-8">
+                <h4>
+                  {{user.firstName || '' }}{{' '}}{{user.lastName || ''}}
+                </h4>
+                <h4>
+                  <h6>Username: {{user.username}}</h6>
+                </h4>
+                <small *ngIf="user.address">
+                  <cite>{{user.address || ''}}
+                    <i class="glyphicon glyphicon-map-marker">
+                    </i>
+                  </cite>
+                </small>
+                <p>
+                  <i class="glyphicon glyphicon-envelope"></i>{{user.email}}
+                  <br />
+                  <div>
+                    <div>
+                      <h6 *ngIf="user.facebook || user.twitter || user.google">Social links:</h6>
+                      <a *ngIf="user.facebook" target="_blank" href="{{user.facebook}}">
+                        <img class="grow" src="../../../assets/images/logo-facebook.png" alt="facebook logo">
+                      </a>
+                      <a *ngIf="user.twitter" target="_blank" type="button" href="{{user.twitter}}">
+                        <img class="grow" src="../../../assets/images/logo-twitter.png" alt="twitter logo">
+                      </a>
+                      <a *ngIf="user.google" target="_blank" type="button" href="{{user.google}}">
+                        <img class="grow" src="../../../assets/images/logo-google.png" alt="google+ logo">
+                      </a>
+                    </div>
+                    <a id="delete-btn"  (click)="deleteUser(user._id)" class="glyphicon glyphicon-remove btn btn-danger"></a>
+                    <a id="edit-btn" routerLink="/users/edit/{{user.username}}" class="glyphicon glyphicon-pencil btn btn-danger"></a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

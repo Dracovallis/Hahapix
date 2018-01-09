@@ -1,6 +1,11 @@
 <div *ngIf="!userInfo[0] && !currentUser[0]">
   <app-loading-spinner></app-loading-spinner>
 </div>
+<div align="center" *ngIf="userInfo.length == 0">
+  <h4>
+    <i>* User does not exists *</i>
+  </h4>
+</div>
 <div *ngIf="userInfo[0] && currentUser[0] ">
   <div class="container">
     <div align="center" class="row">

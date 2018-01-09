@@ -18,15 +18,23 @@ export class CreateMemeComponent implements OnInit {
   category: string = "";
   nsfw: boolean = false;
 
+  imageRegex = /https?:\/\/.*\.(?:png|jpg)[?]?[\w=&]*/i;
 
-  constructor(private fb: FormBuilder, 
+
+  constructor(private fb: FormBuilder,
     private ms: MemeServiceService,
-    private router : Router) {
+    private router: Router) {
     this.createForm = fb.group({
-      'title': [null, Validators.required],
-      'imageUrl': [null, Validators.required],
-      'category': [null, Validators.required],
-      'nsfw': [false,""]
+      'title': [null, Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20)])],
+      'imageUrl': [null, Validators.compose([
+        Validators.required,
+        Validators.pattern(this.imageRegex)]
+      )],
+      'category': ['animals', Validators.required],
+      'nsfw': [false, ""]
     })
 
   }

@@ -9,11 +9,11 @@ const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}/`;
 @Injectable()
 export class UserService {
 
-  constructor(  private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getUser(username) {
     let query = {
-      "username":username
+      "username": username
     }
     return this.http.get(
       usersBaseUrl + `?query={"username":"${username}"}`,
@@ -24,7 +24,26 @@ export class UserService {
     )
   }
 
-  private createAuthHeaders(type : string) : HttpHeaders {
+  getUsers() {
+    return this.http.get(
+      usersBaseUrl,
+      {
+        headers: this.createAuthHeaders('Kinvey')
+      }
+
+    )
+  }
+
+  deleteUser(id) {
+    return this.http.delete(
+      usersBaseUrl + id + `?hard=true`,
+      {
+        headers: this.createAuthHeaders('Kinvey')
+      }
+    )
+  }
+
+  private createAuthHeaders(type: string): HttpHeaders {
     if (type === 'Basic') {
       return new HttpHeaders({
         'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,

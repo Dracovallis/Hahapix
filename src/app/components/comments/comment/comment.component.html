@@ -1,11 +1,9 @@
-<div *ngIf="!user[0]">
+<div *ngIf="!user">
   <app-loading-spinner></app-loading-spinner>
 </div>
-<div *ngIf="user[0]">
-  <article class="row">
-
+<div *ngIf="user">
+    <article class="row">
     <div class="col-md-2 col-sm-2 hidden-xs">
-
       <figure class="thumbnail">
         <div *ngIf="user[0]">
           <a href="users/{{comment.author}}">
@@ -13,6 +11,12 @@
             />
           </a>
         </div>
+        <div *ngIf="user.length == 0">
+            <a href="users/{{comment.author}}">
+              <img class="avatar" src="../../../../assets/images/deleted-user.jpg" onerror="this.onerror=null;this.src='https://img00.deviantart.net/93f6/i/2010/155/1/1/facebook_default_picture_by_adnac.jpg';"
+              />
+            </a>
+          </div>
       </figure>
     </div>
     <div class="col-md-10 col-sm-10">
