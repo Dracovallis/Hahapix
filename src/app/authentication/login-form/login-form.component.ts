@@ -3,6 +3,7 @@ import { LoginModel } from '../models/login.model';
 import { AuthenticationService } from '../auth.service';
 import { Router } from '@angular/router';
 import { StorageService } from '../../services/storage-service.service';
+import { NotificationsService } from 'angular2-notifications';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginFormComponent {
     private authService: AuthenticationService,
     private router: Router,
     private ss: StorageService,
+    private _service: NotificationsService
   ) {
     this.model = new LoginModel("", "");
     this.username = "";
@@ -33,6 +35,7 @@ export class LoginFormComponent {
         this.successfulLogin(data);
       },
       err => {
+        this._service.error('Error', 'Something went wrong!')
         this.loginFail = true;
       }
       )
@@ -51,7 +54,7 @@ export class LoginFormComponent {
     this.loginFail = false;
     this.ss.renameUser(data['username']);
     this.router.navigate(['/home']);
-
+    this._service.success('Success', 'You have logged in successfully')
     this.showSuccess();
 
   }

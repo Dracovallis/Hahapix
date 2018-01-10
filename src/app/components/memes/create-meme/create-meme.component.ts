@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MemeServiceService } from '../../../services/meme-service.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-create-meme',
@@ -23,7 +24,8 @@ export class CreateMemeComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private ms: MemeServiceService,
-    private router: Router) {
+    private router: Router,
+    private _service: NotificationsService) {
     this.createForm = fb.group({
       'title': [null, Validators.compose([
         Validators.required,
@@ -63,7 +65,7 @@ export class CreateMemeComponent implements OnInit {
   }
 
   creationSuccess(data) {
- 
+    this._service.success('Success', 'Pic uploaded')
     this.router.navigate(['/home'])
   }
 

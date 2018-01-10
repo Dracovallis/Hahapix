@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommentService } from '../../../services/comment.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-post-comment',
@@ -16,7 +17,10 @@ export class PostCommentComponent implements OnInit {
 
   content: string = "";
 
-  constructor(private fb: FormBuilder, private cs: CommentService, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder,
+     private cs: CommentService, 
+     private route: ActivatedRoute,
+     private _service: NotificationsService) {
     this.postForm = fb.group({
       'content': [null, Validators.required]
     })
@@ -42,7 +46,7 @@ export class PostCommentComponent implements OnInit {
   }
 
   creationError(error) {
-
+    this._service.error('Error', 'Failed to post comment')
   }
 
   ngOnInit() {

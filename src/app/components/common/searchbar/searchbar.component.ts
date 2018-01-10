@@ -3,6 +3,7 @@ import { MemeServiceService } from '../../../services/meme-service.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { StorageService } from '../../../services/storage-service.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-searchbar',
@@ -16,7 +17,8 @@ export class SearchbarComponent implements OnInit {
   constructor(private ms: MemeServiceService,
     private fb: FormBuilder,
     private ss: StorageService,
-    private router: Router) {
+    private router: Router,
+    private _service: NotificationsService) {
     this.searchForm = fb.group({
       'search': [null]
     })
@@ -51,7 +53,7 @@ export class SearchbarComponent implements OnInit {
   }
 
   searchError(error) {
-  
+  this._service.error('Error','Failed to search')
   }
 
 }

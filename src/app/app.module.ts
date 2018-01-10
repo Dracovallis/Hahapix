@@ -40,6 +40,7 @@ import { OwnerGuard } from './guards/owner.guard';
 import { ProfileGuard } from './guards/profile.guard';
 import { UserListComponent } from './components/admin/user-list/user-list.component';
 import { AdminGuard } from './guards/admin.guard';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 
 
@@ -68,6 +69,7 @@ import { AdminGuard } from './guards/admin.guard';
   ],
   imports: [
     BrowserModule,
+    SimpleNotificationsModule.forRoot(),
     BrowserAnimationsModule,
     AuthenticationModule,
     AppRoutesModule,

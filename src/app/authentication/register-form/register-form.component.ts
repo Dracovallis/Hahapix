@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterModel } from '../models/register.model';
 import { AuthenticationService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class RegisterFormComponent  {
 
   constructor(
     private authService : AuthenticationService, 
-    private router : Router
+    private router : Router,
+    private _service: NotificationsService
   ) { 
     this.model = new RegisterModel("", "", "", "");  
   }
@@ -35,6 +37,7 @@ export class RegisterFormComponent  {
           this.successfulRegister(data);
         },
         err => {
+          this._service.error('Error', 'Failed to register')
           this.registerFail = true;
         }
       )
@@ -45,6 +48,7 @@ export class RegisterFormComponent  {
   }
 
   successfulRegister(data) : void {
+    this._service.success('Success', 'You have registered as ' + data['username'])
     this.registerSuccess = true;
     this.registeredUser = data['username'];
 

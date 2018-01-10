@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../../authentication/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-edit-user',
@@ -36,7 +37,8 @@ export class EditUserComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private _service: NotificationsService
   ) {
     this.createForm = this.fb.group({
       'avatar': [null, Validators.pattern(this.regexPatterns.imageUrl)],
@@ -122,14 +124,14 @@ export class EditUserComponent implements OnInit {
       this.authService.authtoken = data['_kmd']['authtoken'];
       localStorage.setItem('authtoken', data['_kmd']['authtoken']);
       localStorage.setItem('username', data.username);
-
+      this._service.success('Success', 'User edited successfully')
 
     }
     this.router.navigate(['/users/' + data.username])
   }
 
   creationError(error) {
-  
+    this._service.error('Error', 'Cannot edit user')
   }
 
 }

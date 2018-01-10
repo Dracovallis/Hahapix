@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemeServiceService } from '../../../services/meme-service.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-edit-meme',
@@ -23,7 +24,8 @@ export class EditMemeComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private ms: MemeServiceService) {
+    private ms: MemeServiceService,
+    private _service: NotificationsService) {
     this.createForm = fb.group({
       'title': [null, Validators.compose([
         Validators.required,
@@ -39,7 +41,7 @@ export class EditMemeComponent implements OnInit {
   }
 
   ngOnInit() {
-    let memeId = this.route.snapshot.paramMap.get('id');    
+    let memeId = this.route.snapshot.paramMap.get('id');
     this.meme = this.ms.getMeme(memeId).subscribe(
       data => {
         this.meme = data
@@ -87,12 +89,12 @@ export class EditMemeComponent implements OnInit {
 
   editSuccess(data) {
 
-
+    this._service.success('Success', 'Pic editted successfully')
     this.router.navigate(['/home'])
   }
 
   creationError(error) {
- 
+    this._service.error('Error','Failed to edit')
   }
 
 }
