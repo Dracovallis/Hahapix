@@ -70,7 +70,7 @@ export class CreateMemeComponent implements OnInit {
   }
 
   creationError(error) {
-   
+   this._service.error('Error','Something went wrong')
   }
 
   ngOnInit() {
