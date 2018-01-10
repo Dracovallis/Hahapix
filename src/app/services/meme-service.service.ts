@@ -95,7 +95,7 @@ export class MemeServiceService {
   getFreshMemes(): Observable<Object> {
     if (localStorage.getItem('username')) {
       return this.http.get(
-        memeBaseUrl,
+        memeBaseUrl + `?query={}&sort={"_kmd.ect": -1}`,
         {
           headers: this.createAuthHeaders('Kinvey')
         }
@@ -103,7 +103,7 @@ export class MemeServiceService {
       )
     } else {
       return this.http.get(
-        memeBaseUrl,
+        memeBaseUrl + `?query={}&sort={"_kmd.ect": -1}`,
         {
           headers: this.createAuthHeaders('Guest')
         }
