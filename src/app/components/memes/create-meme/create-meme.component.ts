@@ -63,12 +63,12 @@ export class CreateMemeComponent implements OnInit {
   }
 
   creationSuccess(data) {
-    console.log(data);
+ 
     this.router.navigate(['/home'])
   }
 
   creationError(error) {
-    console.log(error);
+   
   }
 
   ngOnInit() {

@@ -75,7 +75,7 @@ export class EditMemeComponent implements OnInit {
   }
 
   getMemeSuccess(data) {
-    console.log(data);
+
     this.createForm.patchValue({
       title: data.title,
       imageUrl: data.imageUrl,
@@ -86,13 +86,13 @@ export class EditMemeComponent implements OnInit {
   }
 
   editSuccess(data) {
-    console.log(data);
+
 
     this.router.navigate(['/home'])
   }
 
   creationError(error) {
-    console.log(error);
+ 
   }
 
 }

@@ -101,7 +101,7 @@ export class EditUserComponent implements OnInit {
   }
 
   getUserSuccess(data) {
-    console.log(data);
+
     this.createForm.patchValue(
       {
         username: data[0].username,
@@ -129,7 +129,7 @@ export class EditUserComponent implements OnInit {
   }
 
   creationError(error) {
-    console.log(error);
+  
   }
 
 }

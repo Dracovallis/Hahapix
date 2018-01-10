@@ -46,11 +46,11 @@ export class MemeComponent implements OnInit {
   }
 
   success(data) {
-    console.log(data)
+
   }
 
   error(error) {
-    console.log(error);
+  
   }
 
 }

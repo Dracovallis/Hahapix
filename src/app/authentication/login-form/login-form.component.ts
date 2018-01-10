@@ -53,7 +53,7 @@ export class LoginFormComponent {
     this.router.navigate(['/home']);
 
     this.showSuccess();
-    console.log(this.authService.currentUser)
+
   }
 
   showSuccess() {

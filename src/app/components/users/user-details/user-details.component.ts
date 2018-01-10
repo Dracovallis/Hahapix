@@ -38,11 +38,11 @@ export class UserDetailsComponent implements OnInit {
 
 
   success(data) {
-    console.log(data)
+
   }
 
   creationError(error) {
-    console.log(error);
+ 
   }
 
 }

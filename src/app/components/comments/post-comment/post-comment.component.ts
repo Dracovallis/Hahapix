@@ -42,7 +42,7 @@ export class PostCommentComponent implements OnInit {
   }
 
   creationError(error) {
-    console.log(error);
+
   }
 
   ngOnInit() {

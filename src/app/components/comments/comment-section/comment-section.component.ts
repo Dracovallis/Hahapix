@@ -40,11 +40,11 @@ export class CommentSectionComponent implements OnInit {
 
   creationSuccess(data) {
     
-    console.log(data);
+
   }
 
   creationError(error) {
-    console.log(error);
+  
   }
 
 }

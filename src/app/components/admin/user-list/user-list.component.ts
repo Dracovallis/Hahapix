@@ -23,11 +23,11 @@ export class UserListComponent implements OnInit {
   }
 
   success(data) {
-    console.log(data)
+
   }
 
   error(data) {
-    console.log(data)
+
   }
 }
 

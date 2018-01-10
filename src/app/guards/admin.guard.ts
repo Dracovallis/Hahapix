@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
   }
 
   checkIfAdmin(): Promise<boolean> | boolean {
-    if (!localStorage.getItem('authToken')) {
+    if (!localStorage.getItem('authtoken')) {
       return false;
     } else
 

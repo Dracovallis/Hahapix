@@ -76,10 +76,10 @@ export class CommentComponent implements OnInit {
   }
 
   error(error) {
-    console.log(error);
+
   }
 
   creationError(error) {
-    console.log(error);
+
   }
 }

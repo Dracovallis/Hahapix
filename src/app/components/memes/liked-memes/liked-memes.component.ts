@@ -25,11 +25,11 @@ export class LikedMemesComponent implements OnInit {
   }
 
   creationSuccess(data) {
-    console.log(data);
+
   }
 
   creationError(error) {
-    console.log(error);
+  
   }
 
 }
